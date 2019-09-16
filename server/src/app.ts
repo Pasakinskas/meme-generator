@@ -1,8 +1,9 @@
-import express, { Application } from "express";
+import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import cors from "cors";
 import path from "path";
+import serveStatic from "serve-static";
 
 import { initDatabase } from "./database/database";
 import { createMemesRouter } from "./routers/memesRouter";
@@ -18,6 +19,7 @@ export function createServer() {
 
     app.use(cors());
     app.use(bodyParser.json());
+    app.use("/img", serveStatic(path.join(__dirname, '../img')));
 
     app.use("/api/memes", createMemesRouter(memeController));
 

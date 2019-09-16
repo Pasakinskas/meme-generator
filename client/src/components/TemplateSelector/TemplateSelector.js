@@ -54,8 +54,8 @@ export default class TemplateSelector extends Component {
     }
 
     async getMemeTemplates() {
-        //const templates = await ApiService.getTemplates();
-        const templates = []
+        const templates = await ApiService.getTemplates();
+        // const templates = []
         this.setState({
             templates
         });

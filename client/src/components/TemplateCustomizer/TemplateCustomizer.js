@@ -6,8 +6,9 @@ export default class TemplateCustomizer extends Component {
         super(props);
 
         this.state = {
+            name: "",
             topText: "",
-            bottomText: ""
+            bottomText: "",
         }
     }
 
@@ -23,6 +24,12 @@ export default class TemplateCustomizer extends Component {
         });
     }
 
+    handleNameTextChange = (evt) => {
+        this.setState({
+            name: evt.target.value
+        });
+    }
+
     render() {
         const { template } = this.props;
         return (
@@ -30,6 +37,9 @@ export default class TemplateCustomizer extends Component {
             {template && <MemeTemplate template={template}/>}
 
             {template && <form onSubmit={(e) => {this.generateMeme(e)}}>
+                <input
+                    placeholder="meme name"
+                    onChange={this.handleNameTextChange} />
                 <input
                     placeholder="top text"
                     onChange={this.handleTopTextChange} />
@@ -44,9 +54,9 @@ export default class TemplateCustomizer extends Component {
 
     generateMeme = (e) => {
         e.preventDefault();
-        const { topText, bottomText } = this.state;
+        const { topText, bottomText, name } = this.state;
         const { template } = this.props;
 
-        this.props.onCreateMeme(template, topText, bottomText);
+        this.props.onCreateMeme(template, name, topText, bottomText);
     }
 }

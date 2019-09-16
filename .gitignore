@@ -12,6 +12,9 @@
 /**/dist
 
 # misc
+
+/**/img
+
 /**/.DS_Store
 /**/.env
 /**/.env.local

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TemplateSelector from '../../components/TemplateSelector/TemplateSelector';
 import TemplateCustomizer from '../../components/TemplateCustomizer/TemplateCustomizer'
+import ApiService from "../../ApiService";
 
 class MemeGenerator extends Component {
     constructor(props) {
@@ -24,10 +25,10 @@ class MemeGenerator extends Component {
         });
     }
 
-    handleGenerateMeme = (selectedTemplate, topText, bottomText) => {
-        // ApiService -> POST -> returns <Meme />
-        console.log(selectedTemplate, topText, bottomText);
-
+    handleGenerateMeme = async (selectedTemplate, name, topText, bottomText) => {
+        const memePrototype = await ApiService.generateMeme(selectedTemplate, name, topText, bottomText);
+        console.log(memePrototype);
+        return memePrototype;
     }
 
     render() {
