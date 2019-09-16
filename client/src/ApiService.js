@@ -8,6 +8,8 @@ class ApiService {
         const json = await this._requestTemplates();
         return json.data.memes;
     }
+
+    async generateMeme() {}
 }
 
 export default new ApiService();

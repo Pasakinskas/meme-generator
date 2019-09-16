@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import TemplateSelector from '../components/TemplateSelector/TemplateSelector';
+import MemeGenerator from './MemeGenerator/MemeGenerator';
 
 class HomePage extends Component {
   render() {
     return (
       <div>
-          <TemplateSelector />
+          <MemeGenerator />
       </div>
     );
   }
