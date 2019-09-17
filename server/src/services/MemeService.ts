@@ -16,9 +16,9 @@ export class MemeService {
         return imageWithBothTexts;
     }
 
-    saveMeme(name: string, filename: string, width: string, height: string) {
+    saveMeme(title: string, filename: string, width: string, height: string) {
         const templateModel = new MemeModel({
-            name,
+            title,
             filename,
             width,
             height

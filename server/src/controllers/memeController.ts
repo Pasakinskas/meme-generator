@@ -9,6 +9,7 @@ export class MemeController {
 
        const {width, height, url } = options.template;
        const { topText, bottomText, name } = options;
+       console.log(options);
 
        const { image, filename } = await imageService.getCopy(url);
        const meme = await memeService.generateMeme(

@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 
 export interface Meme extends mongoose.Document {
-    name: string;
+    title: string;
     filename: string;
     width: number;
     height: number;
 }
 
 const schema = new mongoose.Schema({
-    name: {
+    title: {
         type: String,
         required: true,
     },

@@ -20,7 +20,7 @@ export default class TemplateSelector extends Component {
         <div>
             {selectedTemplate &&
                 <button className="btn-return" onClick={onClear}>
-                    Choose different template
+                    Back to template selection
                 </button>
             }
             {!selectedTemplate &&
@@ -54,8 +54,8 @@ export default class TemplateSelector extends Component {
     }
 
     async getMemeTemplates() {
-        const templates = await ApiService.getTemplates();
-        // const templates = []
+        // const templates = await ApiService.getTemplates();
+        const templates = [];
         this.setState({
             templates
         });
