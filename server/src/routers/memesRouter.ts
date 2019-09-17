@@ -7,7 +7,7 @@ export function createMemesRouter(memeController: MemeController) {
 
     router.get("/", async (req: Request, res: Response) => {
         const memes: MemeDTO[] = await memeController.getAllMemes();
-        res.status(201).send(memes);
+        res.status(200).send(memes);
     })
 
     router.post("/", async (req: Request, res: Response) => {

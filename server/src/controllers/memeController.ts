@@ -27,7 +27,7 @@ export class MemeController {
             bottomText,
         );
 
-        this.imageService.saveImage(meme, filename);
+        await this.imageService.saveImage(meme, filename);
         const savedMeme: Meme = await this.memeService.saveMeme(name, filename, width, height);
         return buildMemeDTO(savedMeme);
     }
