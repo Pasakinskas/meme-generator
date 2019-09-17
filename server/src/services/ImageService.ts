@@ -2,7 +2,7 @@ import Jimp from 'jimp';
 import cuid from 'cuid';
 
 export class ImageService {
-    private async copyImage(uri: string) {
+    private async copyImage(uri: string): Promise<string> {
         const generatedFilename = cuid();
         const IMG_DIRECTORY = `./img/${generatedFilename}.jpg`;
         const imageData = await Jimp.read(uri);
@@ -26,7 +26,8 @@ export class ImageService {
         }
     }
 
-    async writeText(image, text: string, x, y, imageWidth, imageHeight) {
+    async writeText(image: any, text: string, x: number,
+            y: number, imageWidth: number, imageHeight: number) {
         const font = await Jimp.loadFont(Jimp.FONT_SANS_32_WHITE);
         return await image.print(
             font,
@@ -51,7 +52,7 @@ export class ImageService {
         }
     }
 
-    async saveImage(image, filename: string) {
+    async saveImage(image: any, filename: string) {
         await image.quality(100).write(`./img/${filename}.jpg`);
     }
 

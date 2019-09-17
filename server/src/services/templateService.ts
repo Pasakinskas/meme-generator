@@ -1,5 +1,5 @@
 import { TemplateModel } from "../models/templateModel";
-import { ImageService } from "./ImageService";
+import { ImageService } from "./imageService";
 
 export class TemplateService {
 

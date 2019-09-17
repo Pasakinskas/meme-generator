@@ -1,5 +1,5 @@
-import { MemeService } from "../services/MemeService";
-import { ImageService } from "../services/ImageService";
+import { MemeService } from "../services/memeService";
+import { ImageService } from "../services/imageService";
 import { Meme } from "../models/memeModel";
 import { MemeDTO, buildMemeDTO } from "../dataTransfer/MemeDTO";
 

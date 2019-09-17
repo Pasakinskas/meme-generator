@@ -12,8 +12,7 @@ describe("/api/memes", () => {
 
     before(async () => {
         server = createServer();
-        const testUtils = new TestUtils();
-        await testUtils.scrubDatabase();
+        await TestUtils.scrubDatabase();
     });
 
     after(() => {
@@ -44,8 +43,8 @@ describe("/api/memes", () => {
             const res = await postMeme(testMeme);
             const meme: MemeDTO = res.body;
 
-            expect(meme).to.haveOwnProperty("title");
-            expect(meme).to.haveOwnProperty("uri");
+            expect(meme).to.have.property("title");
+            expect(meme).to.have.property("uri");
         });
     });
 

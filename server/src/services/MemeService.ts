@@ -1,9 +1,11 @@
-import { ImageService } from "../services/ImageService";
+import { ImageService } from "./imageService";
 import { MemeModel, Meme } from "../models/memeModel";
 
 export class MemeService {
 
-    async generateMeme(template, width, height, topText, bottomText) {
+    async generateMeme(template: any, width: number,
+            height: number, topText: string, bottomText: string): Promise<any> {
+
         const imageService = new ImageService();
         const y = height - 40;
 
@@ -20,7 +22,7 @@ export class MemeService {
         return await MemeModel.find();
     }
 
-    saveMeme(title: string, filename: string, width: string, height: string) {
+    saveMeme(title: string, filename: string, width: string, height: string): Promise<Meme> {
         const templateModel = new MemeModel({
             title,
             filename,

@@ -8,12 +8,12 @@ export function createTemplateRouter(templateController: TemplateController) {
 
     router.get("/", async (req: Request, res: Response) => {
         const templates: TemplateDTO[] = await templateController.getAllTemplates();
-        res.send(templates);
+        templates ? res.status(200).send(templates) : res.sendStatus(500);
     })
 
     router.post("/", async (req: Request, res: Response) => {
         const template: TemplateDTO = await templateController.createNewTemplate(req.body);
-        res.status(201).send(template);
+        template ? res.status(201).send(template) : res.sendStatus(400);
     })
 
     return router;

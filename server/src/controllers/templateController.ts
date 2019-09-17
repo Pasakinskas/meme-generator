@@ -1,5 +1,5 @@
 import { TemplateModel, Template } from "../models/templateModel";
-import { ImageService } from "../services/ImageService";
+import { ImageService } from "../services/imageService";
 import { TemplateService } from "../services/templateService";
 import { TemplateDTO, buildTemplateDTO } from "../dataTransfer/TemplateDTO";
 

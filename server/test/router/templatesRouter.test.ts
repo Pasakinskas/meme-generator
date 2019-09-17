@@ -11,8 +11,7 @@ describe("/api/templates", () => {
 
     before(async () => {
         server = createServer();
-        const testUtils = new TestUtils();
-        await testUtils.MockDataForTests();
+        await TestUtils.MockDataForTests();
     });
 
     after(() => {
@@ -61,11 +60,11 @@ describe("/api/templates", () => {
             const res = await getTemplates();
             const firstTemplate: TemplateDTO = res.body[0];
 
-            expect(firstTemplate).to.haveOwnProperty("url");
-            expect(firstTemplate).to.haveOwnProperty("name");
-            expect(firstTemplate).to.haveOwnProperty("width");
-            expect(firstTemplate).to.haveOwnProperty("height");
-            expect(firstTemplate).to.haveOwnProperty("mongoId");
+            expect(firstTemplate).to.have.property("url");
+            expect(firstTemplate).to.have.property("name");
+            expect(firstTemplate).to.have.property("width");
+            expect(firstTemplate).to.have.property("height");
+            expect(firstTemplate).to.have.property("mongoId");
         });
     });
 });

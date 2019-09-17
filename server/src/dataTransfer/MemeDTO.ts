@@ -19,7 +19,7 @@ export function buildMemeDTO(meme: Meme): MemeDTO {
     }
 }
 
-function _buildMemeUri(filename: string) {
+function _buildMemeUri(filename: string): string {
     const apiURL = process.env.API_IMG_URL || "http://localhost:8085/img/";
     return apiURL + filename + ".jpg";
 }

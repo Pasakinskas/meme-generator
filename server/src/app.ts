@@ -7,7 +7,7 @@ import serveStatic from "serve-static";
 
 import { initDatabase } from "./database/database";
 
-import { ImageService } from "./services/ImageService";
+import { ImageService } from "./services/imageService";
 import { MemeService } from "./services/MemeService";
 import { TemplateService } from "./services/templateService";
 
