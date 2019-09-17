@@ -38,7 +38,7 @@ export default class TemplateCustomizer extends Component {
 
             {template && <form onSubmit={(e) => {this.generateMeme(e)}}>
                 <input
-                    placeholder="meme name"
+                    placeholder="meme title"
                     onChange={this.handleNameTextChange} />
                 <input
                     placeholder="top text"

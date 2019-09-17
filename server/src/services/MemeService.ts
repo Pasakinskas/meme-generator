@@ -1,5 +1,5 @@
 import { ImageService } from "../services/ImageService";
-import { MemeModel } from "../models/memeModel";
+import { MemeModel, Meme } from "../models/memeModel";
 
 export class MemeService {
 
@@ -14,6 +14,10 @@ export class MemeService {
             template, bottomText, 0 , y, width, height
         );
         return imageWithBothTexts;
+    }
+
+    async getAllMemes(): Promise<Meme[]> {
+        return await MemeModel.find();
     }
 
     saveMeme(title: string, filename: string, width: string, height: string) {

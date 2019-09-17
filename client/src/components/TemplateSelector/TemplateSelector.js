@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import MemeTemplate from "../MemeTemplate/MemeTemplate";
+import TemplateCreator from "../TemplateCreator/TemplateCreator";
 import ApiService from "../../ApiService";
 import "./TemplateSelector.css"
 
@@ -24,6 +25,9 @@ export default class TemplateSelector extends Component {
                 </button>
             }
             {!selectedTemplate &&
+                <TemplateCreator onCreate={() => this.refreshTemplates()}/>
+            }
+            {!selectedTemplate &&
                 this.state.templates.map((template) => {
                     return (
                         <MemeTemplate
@@ -35,6 +39,11 @@ export default class TemplateSelector extends Component {
             )}
         </div>
         );
+    }
+
+    refreshTemplates() {
+        this.clearTemplateSelection();
+        this.getMemeTemplates();
     }
 
     clearTemplateSelection() {
@@ -54,10 +63,12 @@ export default class TemplateSelector extends Component {
     }
 
     async getMemeTemplates() {
-        // const templates = await ApiService.getTemplates();
-        const templates = [];
+        const publicTemplates = [];
+        // const publicTemplates = await ApiService.getPublicTemplates();
+        const templates = await ApiService.getTemplates();
+
         this.setState({
-            templates
+            templates: templates.concat(publicTemplates)
         });
     }
 }

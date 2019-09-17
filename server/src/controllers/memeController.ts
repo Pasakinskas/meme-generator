@@ -1,18 +1,25 @@
 import { MemeService } from "../services/MemeService";
 import { ImageService } from "../services/ImageService";
+import { Meme } from "../models/memeModel";
+import { MemeDTO, buildMemeDTO } from "../dataTransfer/MemeDTO";
 
 export class MemeController {
-    async createMeme(options: any) {
 
-       const memeService = new MemeService();
-       const imageService = new ImageService();
+    private imageService: ImageService;
+    private memeService: MemeService;
 
-       const {width, height, url } = options.template;
+    constructor(imageService: ImageService, memeService: MemeService) {
+        this.imageService = imageService;
+        this.memeService = memeService;
+    }
+
+    async createMeme(options: any): Promise<MemeDTO> {
+       const { width, height, url } = options.template;
        const { topText, bottomText, name } = options;
-       console.log(options);
 
-       const { image, filename } = await imageService.getCopy(url);
-       const meme = await memeService.generateMeme(
+       const { image, filename } = await this.imageService.getCopy(url);
+
+       const meme: Promise<any> = await this.memeService.generateMeme(
             image,
             width,
             height,
@@ -20,7 +27,13 @@ export class MemeController {
             bottomText,
         );
 
-        imageService.saveImage(meme, filename);
-        return await memeService.saveMeme(name, filename, width, height);
+        this.imageService.saveImage(meme, filename);
+        const savedMeme: Meme = await this.memeService.saveMeme(name, filename, width, height);
+        return buildMemeDTO(savedMeme);
+    }
+
+    async getAllMemes(): Promise<MemeDTO[]> {
+        const memes: Meme[] = await this.memeService.getAllMemes();
+        return memes.map(meme => buildMemeDTO(meme));
     }
 }

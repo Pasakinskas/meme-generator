@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 export interface Template extends mongoose.Document {
     name: string;
     uri: string;
+    width: number;
+    height: number;
 }
 
 const schema = new mongoose.Schema({

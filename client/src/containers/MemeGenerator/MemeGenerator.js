@@ -4,6 +4,7 @@ import TemplateSelector from '../../components/TemplateSelector/TemplateSelector
 import TemplateCustomizer from '../../components/TemplateCustomizer/TemplateCustomizer'
 import Meme from "../../components/Meme/Meme";
 import ApiService from "../../ApiService";
+import TemplateCreator from '../../components/TemplateCreator/TemplateCreator';
 
 class MemeGenerator extends Component {
     constructor(props) {
@@ -29,7 +30,7 @@ class MemeGenerator extends Component {
     }
 
     handleGenerateMeme = async (selectedTemplate, name, topText, bottomText) => {
-        const meme = await ApiService.generateMeme(selectedTemplate, name, topText, bottomText);
+        const meme = await ApiService.createMeme(selectedTemplate, name, topText, bottomText);
         this.setState({
             generatedMeme: meme
         });
@@ -41,7 +42,10 @@ class MemeGenerator extends Component {
     return (
       <div>
         {generatedMeme &&
-            <Meme memeData = {generatedMeme}/>
+            <div>
+                <h2>Success! Meme created</h2>
+                <Meme memeData = {generatedMeme}/>
+            </div>
         }
         {!generatedMeme &&
             <TemplateCustomizer

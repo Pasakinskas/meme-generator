@@ -11,6 +11,21 @@ export class ImageService {
         return generatedFilename;
     }
 
+    getImageDimentions(image: any) {
+        return {
+            width: image.bitmap.width,
+            height: image.bitmap.height
+        }
+    }
+
+    async getImageDimentionsByUrl(imgUri: string) {
+        const image = await Jimp.read(imgUri);
+        return {
+            width: image.bitmap.width,
+            height: image.bitmap.height
+        }
+    }
+
     async writeText(image, text: string, x, y, imageWidth, imageHeight) {
         const font = await Jimp.loadFont(Jimp.FONT_SANS_32_WHITE);
         return await image.print(

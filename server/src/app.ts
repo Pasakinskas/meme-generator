@@ -6,14 +6,28 @@ import path from "path";
 import serveStatic from "serve-static";
 
 import { initDatabase } from "./database/database";
-import { createMemesRouter } from "./routers/memesRouter";
+
+import { ImageService } from "./services/ImageService";
+import { MemeService } from "./services/MemeService";
+import { TemplateService } from "./services/templateService";
+
+import { TemplateController } from "./controllers/templateController";
 import { MemeController } from "./controllers/memeController";
+
+import { createMemesRouter } from "./routers/memesRouter";
+import { createTemplateRouter } from "./routers/templateRouter";
 
 dotenv.config();
 
 export function createServer() {
     const app = express();
-    const memeController = new MemeController();
+
+    const imageService = new ImageService();
+    const memeService = new MemeService();
+    const templateService = new TemplateService();
+
+    const memeController = new MemeController(imageService, memeService);
+    const templateController = new TemplateController(imageService, templateService);
 
     initDatabase();
 
@@ -22,6 +36,7 @@ export function createServer() {
     app.use("/img", serveStatic(path.join(__dirname, '../img')));
 
     app.use("/api/memes", createMemesRouter(memeController));
+    app.use("/api/templates", createTemplateRouter(templateController));
 
     return app.listen(process.env.PORT || 8080, () => {
         console.log(`listening on port: ${process.env.PORT}`);

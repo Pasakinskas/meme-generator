@@ -1,15 +1,16 @@
 class ApiService {
-    async _requestTemplates() {
+    async getPublicTemplates() {
         const res = await fetch("https://api.imgflip.com/get_memes");
-        return await res.json();
-    }
-
-    async getTemplates() {
-        const json = await this._requestTemplates();
+        const json = await res.json();
         return json.data.memes;
     }
 
-    async generateMeme(template, name, topText, bottomText) {
+    async getTemplates() {
+        const res = await fetch("http://localhost:8085/api/templates");
+        return await res.json();
+    }
+
+    async createMeme(template, name, topText, bottomText) {
         const data = JSON.stringify({
             name,
             template,
@@ -23,6 +24,22 @@ class ApiService {
             },
             body: data
         })
+
+        return await res.json();
+    }
+
+    async createTemplate(name, uri) {
+        const data = JSON.stringify({
+            name,
+            uri
+        });
+        const res = await fetch("http://localhost:8085/api/templates", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: data
+        });
 
         return await res.json();
     }

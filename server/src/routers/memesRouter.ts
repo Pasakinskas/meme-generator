@@ -1,15 +1,18 @@
 import express, { Request, Response } from "express";
 import { MemeController } from "../controllers/memeController";
-import { MemeDTO, buildMemeDTO } from "../dataTransfer/MemeDTO";
+import { MemeDTO } from "../dataTransfer/MemeDTO";
 
 export function createMemesRouter(memeController: MemeController) {
     const router = express.Router();
 
-    router.post("/", async (req: Request, res: Response) => {
-        const meme = await memeController.createMeme(req.body);
-        const memeDTO: MemeDTO = buildMemeDTO(meme);
+    router.get("/", async (req: Request, res: Response) => {
+        const memes: MemeDTO[] = await memeController.getAllMemes();
+        res.status(201).send(memes);
+    })
 
-        res.status(201).send(memeDTO);
+    router.post("/", async (req: Request, res: Response) => {
+        const meme: MemeDTO = await memeController.createMeme(req.body);
+        res.status(201).send(meme);
     })
 
     return router;
