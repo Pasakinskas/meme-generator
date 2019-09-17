@@ -10,6 +10,11 @@ class ApiService {
         return await res.json();
     }
 
+    async getMemes() {
+        const res = await fetch("http://localhost:8085/api/memes");
+        return await res.json();
+    }
+
     async createMeme(template, name, topText, bottomText) {
         const data = JSON.stringify({
             name,
