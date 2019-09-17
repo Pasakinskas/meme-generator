@@ -1,4 +1,8 @@
 .btn-return {
-    padding: 20px;
-    color: red;
+    padding: 10px;
+    border-radius: 2px;
+}
+
+.template-list-container {
+    padding-top: 40px;
 }

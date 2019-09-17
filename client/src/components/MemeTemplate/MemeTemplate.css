@@ -1,5 +1,9 @@
 .img-template {
-    width: 250px;
-    border: 1px solid black;
-    padding: 3px;
+    max-width: 250px;
+    max-height: 150px;
+    margin: 2px;
+}
+
+.img-template:hover {
+    border: 2px solid black;
 }

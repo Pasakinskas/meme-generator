@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Meme from "../Meme/Meme";
 import ApiService from '../../ApiService';
+import "./MemeFeed.css";
 
 export default class MemeFeed extends Component {
     constructor(props) {
@@ -32,12 +33,12 @@ export default class MemeFeed extends Component {
     render() {
         const { memes, showMemeFeed } = this.state;
         const buttonText = !showMemeFeed ?
-            "Show other users creations"
-            : "Hide other users creations"
+            "Show other user's creations"
+            : "Hide other user's creations"
         return (
         <div>
-            <h1>Memes created by other Users</h1>
-            <button onClick={this.toggleMemeFeed}>{buttonText}</button>
+            <h1>Memes created by other users</h1>
+            <button className="btn-show-feed btn btn-info" onClick={this.toggleMemeFeed}>{buttonText}</button>
             {
             showMemeFeed && memes.map((meme) => {
                 return (

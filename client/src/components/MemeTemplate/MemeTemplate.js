@@ -8,12 +8,12 @@ export default class MemeTemplate extends Component {
 
         return (
             <img
-            className="img-template"
-            key={template.id}
-            src={template.url}
-            alt={template.name}
-            onClick={handleClick}
-        />
+                className="img img-template"
+                key={template.id}
+                src={template.url}
+                alt={template.name}
+                onClick={handleClick}
+            />
         )
     }
 }

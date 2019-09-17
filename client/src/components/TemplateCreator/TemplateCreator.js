@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import MemeTemplate from "../MemeTemplate/MemeTemplate";
 import ApiService from "../../ApiService";
+import "./TemplateCreator.css";
 
 export default class TemplateCreator extends Component {
     constructor(props) {
@@ -29,6 +30,7 @@ export default class TemplateCreator extends Component {
         e.preventDefault()
         const { title, uri } = this.state;
         await ApiService.createTemplate(title, uri);
+        this.props.onCreate();
     }
 
     render() {
@@ -38,12 +40,14 @@ export default class TemplateCreator extends Component {
             <p>If you don't find our template selection satisfying, use this form to create your own</p>
             <form onSubmit={(e) => {this.createTemplate(e)}}>
                 <input
+                    className="creator-input"
                     placeholder="template title"
                     onChange={this.handleTitleChange} />
                 <input
+                    className="creator-input"
                     placeholder="template url"
                     onChange={this.handleUriCHange} />
-                <button type="submit">create!</button>
+                <button type="submit" className="bth-create btn btn-info">create!</button>
             </form>
         </div>
         );

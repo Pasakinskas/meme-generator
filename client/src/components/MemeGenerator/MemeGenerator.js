@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 
-import TemplateSelector from '../../components/TemplateSelector/TemplateSelector';
-import TemplateCustomizer from '../../components/TemplateCustomizer/TemplateCustomizer'
-import Meme from "../../components/Meme/Meme";
+import TemplateSelector from '../TemplateSelector/TemplateSelector';
+import TemplateCustomizer from '../TemplateCustomizer/TemplateCustomizer'
+import Meme from "../Meme/Meme";
 import ApiService from "../../ApiService";
-import TemplateCreator from '../../components/TemplateCreator/TemplateCreator';
 
 class MemeGenerator extends Component {
     constructor(props) {

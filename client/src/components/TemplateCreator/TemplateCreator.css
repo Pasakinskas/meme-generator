@@ -1,0 +1,9 @@
+.creator-input {
+    display: block;
+    margin: 5px auto;
+    border-radius: 4px;
+}
+
+.bth-create {
+    border-radius: 2px;
+}

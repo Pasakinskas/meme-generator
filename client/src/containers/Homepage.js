@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MemeGenerator from './MemeGenerator/MemeGenerator';
+import MemeGenerator from '../components/MemeGenerator/MemeGenerator';
 import MemeFeed from '../components/MemeFeed/MemeFeed';
 
 class HomePage extends Component {

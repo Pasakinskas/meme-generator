@@ -20,23 +20,25 @@ export default class TemplateSelector extends Component {
         return (
         <div>
             {selectedTemplate &&
-                <button className="btn-return" onClick={onClear}>
+                <button className="btn btn-info btn-return" onClick={onClear}>
                     Back to template selection
                 </button>
             }
             {!selectedTemplate &&
                 <TemplateCreator onCreate={() => this.refreshTemplates()}/>
             }
-            {!selectedTemplate &&
-                this.state.templates.map((template) => {
-                    return (
-                        <MemeTemplate
-                            template={template}
-                            handleClick={() => { onSelect(template)}}
-                        />
-                    )
-                }
-            )}
+            <div className="template-list-container">
+                {!selectedTemplate &&
+                    this.state.templates.map((template) => {
+                        return (
+                            <MemeTemplate
+                                template={template}
+                                handleClick={() => { onSelect(template)}}
+                            />
+                        )
+                    }
+                )}
+            </div>
         </div>
         );
     }
@@ -63,8 +65,8 @@ export default class TemplateSelector extends Component {
     }
 
     async getMemeTemplates() {
-        const publicTemplates = [];
-        // const publicTemplates = await ApiService.getPublicTemplates();
+        // const publicTemplates = [];
+        const publicTemplates = await ApiService.getPublicTemplates();
         const templates = await ApiService.getTemplates();
 
         this.setState({
