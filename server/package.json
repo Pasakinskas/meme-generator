@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "node ./src/index.ts",
-    "dist": "node index.js",
-    "test": "mocha --timeout 15000 -r ts-node/register test/**/*.test.ts --exit"
+    "dev": "node index.js",
+    "test": "mocha --timeout 15000 -r ts-node/register test/**/*.test.ts --exit",
+    "start-mongo-db": "docker-compose -f docker-compose_mongo.yml up -d",
+    "stop-mongo-db": "docker-compose -f docker-compose_mongo.yml down"
   },
   "keywords": [],
   "author": "",
