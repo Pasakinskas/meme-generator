@@ -1,5 +1,5 @@
 import { TemplateModel, Template } from "../models/templateModel";
-import { ImageService } from "../services/imageService";
+import {ImageDimensions, ImageService} from "../services/imageService";
 import { TemplateService } from "../services/templateService";
 import { TemplateDTO, buildTemplateDTO } from "../dataTransfer/TemplateDTO";
 
@@ -20,9 +20,8 @@ export class TemplateController {
 
     }
 
-    async createNewTemplate(options: any): Promise<TemplateDTO> {
-        const { uri, name } = options;
-        const imageDimentions = await this.imageService.getImageDimentionsByUrl(uri);
+    async createNewTemplate(uri: string, name: string): Promise<TemplateDTO> {
+        const imageDimentions: ImageDimensions = await this.imageService.getImageDimentionsByUrl(uri);
 
         const template: Template = await this.templateService.saveTemplate(
             name,

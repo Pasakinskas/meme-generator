@@ -23,12 +23,12 @@ class ApiService {
             bottomText
         });
         const res = await fetch("http://localhost:8085/api/memes", {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             },
             body: data
-        })
+        });
 
         return await res.json();
     }
@@ -39,9 +39,9 @@ class ApiService {
             uri
         });
         const res = await fetch("http://localhost:8085/api/templates", {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             },
             body: data
         });

@@ -21,20 +21,20 @@ export default class MemeFeed extends Component {
     getMemeFeed = async () => {
         const memes = await ApiService.getMemes();
         this.setState({memes});
-    }
+    };
 
     toggleMemeFeed = () => {
         const showFeed = this.state.showMemeFeed;
         this.setState({
             showMemeFeed: !showFeed
         })
-    }
+    };
 
     render() {
         const { memes, showMemeFeed } = this.state;
         const buttonText = !showMemeFeed ?
-            "Show other user's creations"
-            : "Hide other user's creations"
+            "Show other users creations"
+            : "Hide other users creations";
         return (
         <div>
             <h1>Memes created by other users</h1>

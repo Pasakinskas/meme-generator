@@ -19,10 +19,10 @@ export class MemeService {
     }
 
     async getAllMemes(): Promise<Meme[]> {
-        return await MemeModel.find();
+        return MemeModel.find();
     }
 
-    saveMeme(title: string, filename: string, width: string, height: string): Promise<Meme> {
+    saveMeme(title: string, filename: string, width: number, height: number): Promise<Meme> {
         const templateModel = new MemeModel({
             title,
             filename,

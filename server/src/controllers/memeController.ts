@@ -3,6 +3,17 @@ import { ImageService } from "../services/imageService";
 import { Meme } from "../models/memeModel";
 import { MemeDTO, buildMemeDTO } from "../dataTransfer/MemeDTO";
 
+export interface MemeOptions {
+    topText: string,
+    bottomText: string,
+    name: string,
+    template: {
+        width: number,
+        height: number,
+        url: string,
+    },
+}
+
 export class MemeController {
 
     private imageService: ImageService;
@@ -13,7 +24,7 @@ export class MemeController {
         this.memeService = memeService;
     }
 
-    async createMeme(options: any): Promise<MemeDTO> {
+    async createMeme(options: MemeOptions): Promise<MemeDTO> {
        const { width, height, url } = options.template;
        const { topText, bottomText, name } = options;
 

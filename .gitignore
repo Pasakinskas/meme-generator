@@ -11,7 +11,7 @@
 /**/dist
 
 # misc
-
+.idea
 /**/img
 
 /**/.DS_Store

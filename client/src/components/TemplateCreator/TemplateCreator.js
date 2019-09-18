@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import MemeTemplate from "../MemeTemplate/MemeTemplate";
 import ApiService from "../../ApiService";
 import "./TemplateCreator.css";
 
@@ -18,20 +17,20 @@ export default class TemplateCreator extends Component {
         this.setState({
             title: evt.target.value
         });
-    }
+    };
 
     handleUriCHange = (evt) => {
         this.setState({
             uri: evt.target.value
         });
-    }
+    };
 
     createTemplate = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const { title, uri } = this.state;
         await ApiService.createTemplate(title, uri);
         this.props.onCreate();
-    }
+    };
 
     render() {
         return (

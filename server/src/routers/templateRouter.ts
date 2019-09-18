@@ -7,14 +7,29 @@ export function createTemplateRouter(templateController: TemplateController) {
     const router = express.Router();
 
     router.get("/", async (req: Request, res: Response) => {
-        const templates: TemplateDTO[] = await templateController.getAllTemplates();
-        templates ? res.status(200).send(templates) : res.sendStatus(500);
-    })
+        try {
+            const templates: TemplateDTO[] = await templateController.getAllTemplates();
+            res.status(200).send(templates);
+        } catch (e) {
+            console.error(e);
+            res.sendStatus(500);
+        }
+    });
 
     router.post("/", async (req: Request, res: Response) => {
-        const template: TemplateDTO = await templateController.createNewTemplate(req.body);
-        template ? res.status(201).send(template) : res.sendStatus(400);
-    })
+        try {
+            const { uri, name } = req.body;
+            const template: TemplateDTO = await templateController.createNewTemplate(uri, name);
+            if (template) {
+                res.status(201).send(template);
+            } else {
+                res.sendStatus(400);
+            }
+        } catch (e) {
+            console.error(e);
+            res.sendStatus(500);
+        }
+    });
 
     return router;
 }

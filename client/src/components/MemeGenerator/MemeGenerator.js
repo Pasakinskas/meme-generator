@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import TemplateSelector from '../TemplateSelector/TemplateSelector';
-import TemplateCustomizer from '../TemplateCustomizer/TemplateCustomizer'
+import TemplateSelector from "../TemplateSelector/TemplateSelector";
+import TemplateCustomizer from "../TemplateCustomizer/TemplateCustomizer"
 import Meme from "../Meme/Meme";
 import ApiService from "../../ApiService";
 
@@ -19,21 +19,21 @@ class MemeGenerator extends Component {
         this.setState({
             selectedTemplate: template
         })
-    }
+    };
 
     handleClearTemplateSelection = () => {
         this.setState({
             selectedTemplate: null,
             generatedMeme: null
         });
-    }
+    };
 
     handleGenerateMeme = async (selectedTemplate, name, topText, bottomText) => {
         const meme = await ApiService.createMeme(selectedTemplate, name, topText, bottomText);
         this.setState({
             generatedMeme: meme
         });
-    }
+    };
 
     render() {
         const { selectedTemplate, generatedMeme } = this.state;

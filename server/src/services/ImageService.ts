@@ -1,6 +1,11 @@
 import Jimp from 'jimp';
 import cuid from 'cuid';
 
+export interface ImageDimensions {
+    width: number,
+    height: number,
+}
+
 export class ImageService {
     private async copyImage(uri: string): Promise<string> {
         const generatedFilename = cuid();
@@ -11,14 +16,7 @@ export class ImageService {
         return generatedFilename;
     }
 
-    getImageDimentions(image: any) {
-        return {
-            width: image.bitmap.width,
-            height: image.bitmap.height
-        }
-    }
-
-    async getImageDimentionsByUrl(imgUri: string) {
+    async getImageDimentionsByUrl(imgUri: string): Promise<ImageDimensions> {
         const image = await Jimp.read(imgUri);
         return {
             width: image.bitmap.width,
@@ -29,7 +27,7 @@ export class ImageService {
     async writeText(image: any, text: string, x: number,
             y: number, imageWidth: number, imageHeight: number) {
         const font = await Jimp.loadFont(Jimp.FONT_SANS_32_WHITE);
-        return await image.print(
+        return image.print(
             font,
             x,
             y,
@@ -57,6 +55,6 @@ export class ImageService {
     }
 
     async getImage(filename: string) {
-        return await Jimp.read(`./img/${filename}.jpg`);
+        return Jimp.read(`./img/${filename}.jpg`);
     }
 }
