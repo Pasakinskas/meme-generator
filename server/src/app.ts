@@ -38,7 +38,9 @@ export function createServer() {
     app.use("/api/memes", createMemesRouter(memeController));
     app.use("/api/templates", createTemplateRouter(templateController));
 
-    return app.listen(process.env.PORT || 8080, () => {
-        console.log(`listening on port: ${process.env.PORT}`);
+    const port = process.env.PORT || 8085;
+
+    return app.listen(port, () => {
+        console.log(`listening on port: ${port}`);
     });
 }
